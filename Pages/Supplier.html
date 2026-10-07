@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Suppliers — MG Innovation Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --mg-ink:        #0A0A0F;
+      --mg-electric:   #00B8CC;
+      --mg-neon:       #B6FF4E;
+      --mg-orange:     #FF6B2B;
+      --mg-surface:    #111128;
+      --mg-glass:      rgba(255,255,255,0.04);
+      --mg-border:     rgba(255,255,255,0.08);
+      --mg-text:       #ffffff;
+      --mg-text-muted: rgba(255,255,255,0.55);
+      --mg-text-faint: rgba(255,255,255,0.25);
+      --mg-footer-bg:  #07070D;
+      --mg-nav-scrolled:   rgba(10,10,15,0.88);
+      --mg-mobile-menu-bg: rgba(10,10,15,0.97);
+    }
+    html.light {
+      --mg-ink:        #F0F4F8;
+      --mg-electric:   #30aadf;
+      --mg-neon:       #3d8c00;
+      --mg-orange:     #D9541A;
+      --mg-surface:    #FFFFFF;
+      --mg-glass:      rgba(0,0,0,0.03);
+      --mg-border:     rgba(0,0,0,0.10);
+      --mg-text:       #000000;
+      --mg-text-muted: rgba(0,0,0,0.55);
+      --mg-text-faint: rgba(0,0,0,0.30);
+      --mg-footer-bg:  #1A1A2E;
+      --mg-nav-scrolled:   rgba(240,244,248,0.94);
+      --mg-mobile-menu-bg: rgba(240,244,248,0.98);
+    }
+    html.light body,html.light h1,html.light h2,html.light h3,html.light h4,
+    html.light p,html.light li { color:#000; }
+    html.light p { color:rgba(0,0,0,.65); }
+    html.light .nav-link { color:rgba(0,0,0,.65); }
+    html.light .nav-link:hover { color:#000; }
+    html.light .doc-circle { background:#fff; border-color:rgba(0,0,0,.12); }
+    html.light .doc-circle:hover { border-color:#30aadf; }
+    html.light .doc-circle h3 { color:#000; }
+    html.light .doc-circle p { color:rgba(0,0,0,.55); }
+    html.light .standard-card { background:#fff; }
+    html.light .faq-q { color:#000; }
+    html.light .faq-a { color:rgba(0,0,0,.6); }
+    html.light .ticker-wrap { background:#e2e8f0; }
+    html.light .ticker-inner span { color:rgba(0,0,0,.4); }
+    html.light .page-hero h1,html.light .page-hero p,
+    html.light .page-hero .section-label,
+    html.light .page-hero .breadcrumb { color:#fff; }
+    html.light .page-hero .breadcrumb span { color:#30aadf; }
+    html.light footer,html.light footer p,html.light footer li,
+    html.light footer span,html.light footer h4 { color:rgba(255,255,255,.7); }
+    html.light .footer-link { color:rgba(255,255,255,.5); }
+    html.light .footer-link:hover { color:#30aadf; }
+    html.light .social-btn { color:rgba(255,255,255,.45); border-color:rgba(255,255,255,.12); }
+    html.light .social-btn:hover { color:#30aadf; border-color:#30aadf; }
+
+    *,*::before,*::after { transition-property:background-color,border-color,color,box-shadow; transition-duration:.3s; transition-timing-function:ease; }
+    .reveal,.btn-primary,.btn-outline,.doc-circle,.standard-card,.nav-link,.footer-link,.social-btn {
+      transition-property:background-color,border-color,color,box-shadow,opacity,transform;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{ background:var(--mg-ink); color:var(--mg-text); font-family:'DM Sans',sans-serif; overflow-x:hidden; }
+    h1,h2,h3,h4,nav a,.syne{ font-family:'Syne',sans-serif; }
+    body::before{ content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); opacity:.4; }
+
+    /* ── NAV ── */
+    #navbar{ position:fixed; top:0; left:0; right:0; z-index:100; transition:background .4s,backdrop-filter .4s,box-shadow .4s; }
+    #navbar.scrolled{ background:var(--mg-nav-scrolled); backdrop-filter:blur(20px); box-shadow:0 1px 0 var(--mg-border); }
+    .nav-link{ position:relative; font-weight:500; font-size:.9rem; color:var(--mg-text-muted); padding-bottom:2px; }
+    .nav-link::after{ content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--mg-electric); transition:width .3s; }
+    .nav-link:hover{ color:var(--mg-text); }
+    .nav-link:hover::after,.nav-link.active::after{ width:100%; }
+    .nav-link.active{ color:var(--mg-text); }
+    .btn-primary{ background:var(--mg-electric); color:var(--mg-ink); font-family:'Syne',sans-serif; font-weight:700; padding:.55rem 1.4rem; border-radius:2px; transition:transform .2s,box-shadow .2s; letter-spacing:.03em; font-size:.85rem; }
+    .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,184,204,.3); }
+    .btn-outline{ border:1.5px solid var(--mg-electric); color:var(--mg-electric); font-family:'Syne',sans-serif; font-weight:700; padding:.55rem 1.4rem; border-radius:2px; transition:background .2s,color .2s; font-size:.85rem; }
+    .btn-outline:hover{ background:var(--mg-electric); color:var(--mg-ink); }
+    #mobile-menu{ display:none; flex-direction:column; gap:1rem; padding:1.5rem 1.5rem 2rem; background:var(--mg-mobile-menu-bg); backdrop-filter:blur(20px); border-top:1px solid var(--mg-border); }
+    #mobile-menu.open{ display:flex; }
+
+    /* ── THEME TOGGLE ── */
+    .theme-toggle{ width:44px; height:24px; border-radius:12px; background:var(--mg-border); border:1px solid var(--mg-border); position:relative; cursor:pointer; flex-shrink:0; }
+    .theme-toggle::before{ content:''; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:var(--mg-electric); transition:transform .3s; }
+    html.light .theme-toggle::before{ transform:translateX(20px); }
+    .theme-toggle-wrap{ display:flex; align-items:center; gap:.5rem; }
+    .theme-icon{ font-size:.85rem; line-height:1; user-select:none; transition:opacity .3s; }
+
+    /* ── SECTION UTILS ── */
+    .section-label{ font-family:'Syne',sans-serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--mg-electric); display:flex; align-items:center; gap:.6rem; }
+    .section-label::before{ content:''; display:block; width:2rem; height:1.5px; background:var(--mg-electric); }
+    .section-title{ font-size:clamp(2rem,4vw,3.2rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; }
+    .section-title .hl{ color:var(--mg-electric); }
+    .section-title .hl-neon{ color:var(--mg-neon); }
+    .section-title .hl-orange{ color:var(--mg-orange); }
+
+    /* ── HERO ── */
+    .page-hero{ position:relative; min-height:540px; overflow:hidden; display:flex; align-items:flex-end; padding-bottom:5rem; }
+    .hero-bg{ position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80'); background-size:cover; background-position:center; filter:brightness(.18); }
+    .hero-overlay{ position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,10,30,.85) 0%,rgba(0,184,204,.04) 100%); }
+    .hero-grid{ position:absolute; inset:0; pointer-events:none; opacity:.05;
+      background-image:linear-gradient(rgba(0,229,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.5) 1px,transparent 1px);
+      background-size:60px 60px; }
+    .breadcrumb{ font-size:.75rem; color:rgba(255,255,255,.35); letter-spacing:.08em; }
+    .breadcrumb span{ color:var(--mg-electric); }
+
+    /* ── TICKER ── */
+    .ticker-wrap{ overflow:hidden; white-space:nowrap; border-top:1px solid var(--mg-border); border-bottom:1px solid var(--mg-border); background:var(--mg-surface); padding:.7rem 0; }
+    .ticker-inner{ display:inline-block; animation:ticker 30s linear infinite; }
+    .ticker-inner span{ padding:0 2.5rem; font-family:'Syne',sans-serif; font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); }
+    .ticker-inner span b{ color:var(--mg-electric); }
+    @keyframes ticker{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── DOCUMENT CIRCLES ── */
+    .doc-circle{
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      width:220px; height:220px; border-radius:50%;
+      border:2px solid var(--mg-border);
+      background:var(--mg-surface);
+      text-align:center; padding:1.5rem;
+      cursor:pointer; text-decoration:none;
+      position:relative; overflow:hidden;
+      transition:border-color .35s, transform .35s, box-shadow .35s;
+    }
+    .doc-circle::before{
+      content:''; position:absolute; inset:0; border-radius:50%;
+      background:radial-gradient(circle at center,rgba(0,184,204,.12) 0%,transparent 70%);
+      opacity:0; transition:opacity .35s;
+    }
+    .doc-circle:hover{ border-color:var(--mg-electric); transform:translateY(-8px) scale(1.03); box-shadow:0 20px 50px rgba(0,184,204,.18); }
+    .doc-circle:hover::before{ opacity:1; }
+    .doc-circle .doc-icon{ font-size:2.4rem; margin-bottom:.6rem; display:block; }
+    .doc-circle h3{ font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; color:var(--mg-text); line-height:1.3; margin-bottom:.3rem; }
+    .doc-circle p{ font-size:.7rem; color:var(--mg-text-muted); line-height:1.4; }
+    .doc-circle .dl-label{
+      position:absolute; bottom:1.1rem;
+      font-family:'Syne',sans-serif; font-size:.6rem; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase; color:var(--mg-electric);
+      opacity:0; transition:opacity .3s;
+    }
+    .doc-circle:hover .dl-label{ opacity:1; }
+    /* Colour accent ring on hover per card */
+    .doc-circle.c1:hover{ border-color:var(--mg-electric); box-shadow:0 20px 50px rgba(0,184,204,.2); }
+    .doc-circle.c2:hover{ border-color:var(--mg-neon);     box-shadow:0 20px 50px rgba(182,255,78,.15); }
+    .doc-circle.c3:hover{ border-color:var(--mg-orange);   box-shadow:0 20px 50px rgba(255,107,43,.18); }
+    .doc-circle.c4:hover{ border-color:#C084FC;            box-shadow:0 20px 50px rgba(192,132,252,.18); }
+    .doc-circle.c2::before{ background:radial-gradient(circle at center,rgba(182,255,78,.1) 0%,transparent 70%); }
+    .doc-circle.c3::before{ background:radial-gradient(circle at center,rgba(255,107,43,.1) 0%,transparent 70%); }
+    .doc-circle.c4::before{ background:radial-gradient(circle at center,rgba(192,132,252,.1) 0%,transparent 70%); }
+    .doc-circle.c2 .dl-label{ color:var(--mg-neon); }
+    .doc-circle.c3 .dl-label{ color:var(--mg-orange); }
+    .doc-circle.c4 .dl-label{ color:#C084FC; }
+
+    /* Responsive circle sizing */
+    @media(max-width:640px){
+      .doc-circle{ width:160px; height:160px; padding:1rem; }
+      .doc-circle .doc-icon{ font-size:1.8rem; }
+      .doc-circle h3{ font-size:.75rem; }
+    }
+
+    /* ── STANDARDS ── */
+    .standard-card{ border:1px solid var(--mg-border); background:var(--mg-surface); border-radius:4px; padding:1.75rem; position:relative; overflow:hidden; transition:border-color .3s,transform .3s; }
+    .standard-card::before{ content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,184,204,.05) 0%,transparent 60%); opacity:0; transition:opacity .3s; }
+    .standard-card:hover{ border-color:var(--mg-electric); transform:translateY(-5px); }
+    .standard-card:hover::before{ opacity:1; }
+    .std-num{ font-family:'Syne',sans-serif; font-size:4rem; font-weight:800; line-height:1; color:rgba(255,255,255,.04); position:absolute; top:.3rem; right:1rem; pointer-events:none; }
+    html.light .std-num{ color:rgba(0,0,0,.04); }
+
+    /* ── FAQ ── */
+    .faq-item{ border-bottom:1px solid var(--mg-border); }
+    .faq-q{ font-family:'Syne',sans-serif; font-weight:600; font-size:.95rem; padding:1.2rem 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; color:var(--mg-text); gap:1rem; }
+    .faq-icon{ width:26px; height:26px; border:1px solid var(--mg-border); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.8rem; color:var(--mg-electric); transition:transform .3s,border-color .3s; }
+    .faq-item.open .faq-icon{ transform:rotate(45deg); border-color:var(--mg-electric); }
+    .faq-a{ font-size:.9rem; color:var(--mg-text-muted); padding-bottom:1.2rem; line-height:1.75; max-height:0; overflow:hidden; transition:max-height .4s ease; }
+    .faq-item.open .faq-a{ max-height:300px; }
+
+    /* ── CTA ── */
+    .cta-section{ position:relative; overflow:hidden; background:linear-gradient(135deg,#041A2E 0%,#0A1628 50%,#041A20 100%); }
+    .cta-grid{ position:absolute; inset:0; pointer-events:none; opacity:.05;
+      background-image:linear-gradient(rgba(0,229,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.5) 1px,transparent 1px);
+      background-size:60px 60px; }
+
+    /* ── FOOTER ── */
+    footer{ background:var(--mg-footer-bg); border-top:1px solid var(--mg-border); }
+    .footer-link{ color:var(--mg-text-muted); font-size:.875rem; transition:color .25s; }
+    .footer-link:hover{ color:var(--mg-electric); }
+    .social-btn{ width:38px; height:38px; border-radius:4px; border:1px solid var(--mg-border); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.45); transition:border-color .25s,color .25s; }
+    .social-btn:hover{ border-color:var(--mg-electric); color:var(--mg-electric); }
+
+    /* ── LOGO ── */
+    .nav-logo img, a img[alt="MG Innovation Hub"] { height:48px; width:auto; object-fit:contain; display:block; }
+    #navbar.scrolled .nav-logo img{ filter:drop-shadow(0 0 6px rgba(0,184,204,.18)); }
+    footer a img{ height:44px; width:auto; object-fit:contain; display:block; }
+
+    /* ── REVEAL ── */
+    .reveal{ opacity:1; transform:none; }
+    .reveal.will-animate{ opacity:0; transform:translateY(24px); transition:opacity .65s ease,transform .65s ease; }
+    .reveal.will-animate.visible{ opacity:1; transform:none; }
+    .reveal-delay-1{ transition-delay:.1s; }
+    .reveal-delay-2{ transition-delay:.2s; }
+    .reveal-delay-3{ transition-delay:.3s; }
+    .reveal-delay-4{ transition-delay:.4s; }
+
+    .glow-blob{ position:absolute; border-radius:50%; pointer-events:none; filter:blur(90px); opacity:.07; }
+    ::-webkit-scrollbar{ width:5px; }
+    ::-webkit-scrollbar-track{ background:var(--mg-ink); }
+    ::-webkit-scrollbar-thumb{ background:var(--mg-electric); border-radius:10px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav id="navbar" class="py-4">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo flex items-center gap-2">
+      <img src="/SRC/mgihub.jpeg" alt="MG Innovation Hub" style="height:48px;width:auto;object-fit:contain;display:block;"/>
+    </a>
+
+    <!-- Desktop Links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="/Pages/About.html" class="nav-link">About</a>
+      <a href="/Pages/Services.html" class="nav-link">Services</a>
+      <a href="/Pages/Supplier.html" class="nav-link">Suppliers</a>
+      <a href="/Pages/Events.html" class="nav-link">Events</a>
+      <a href="/Pages/Gallery.html" class="nav-link">Gallery</a>
+      <a href="/Pages/Contact.html" class="nav-link">Contact</a>
+    </div>
+
+    <!-- CTA + Toggle + Hamburger -->
+    <div class="flex items-center gap-3">
+      <!-- Theme Toggle -->
+      <div class="theme-toggle-wrap">
+        <span class="theme-icon" id="icon-moon">🌙</span>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode"></button>
+        <span class="theme-icon" id="icon-sun">☀️</span>
+      </div>
+      <a href="/Pages/Contact.html" class="btn-primary hidden md:inline-block">Get Started</a>
+      <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+        <span class="w-6 h-0.5 bg-white transition-all" id="h1"></span>
+        <span class="w-6 h-0.5 bg-white transition-all" id="h2"></span>
+        <span class="w-4 h-0.5 bg-white transition-all" id="h3"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu">
+    <a href="/Pages/About.html" class="nav-link text-lg">About</a>
+    <a href="/Pages/Services.html" class="nav-link text-lg">Services</a>
+    <a href="/Pages/Supplier.html" class="nav-link text-lg">Suppliers</a>
+    <a href="/Pages/Events.html" class="nav-link text-lg">Events</a>
+    <a href="/Pages/Gallery.html" class="nav-link text-lg">Gallery</a>
+    <a href="/Pages/Contact.html" class="nav-link text-lg">Contact</a>
+    <a href="/Pages/Contact.html" class="btn-primary text-center mt-2">Get Started</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════
+     HERO
+═══════════════════════════════════ -->
+<section class="page-hero pt-24">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="glow-blob w-[500px] h-[400px] top-0 right-0" style="background:var(--mg-electric)"></div>
+  <div class="glow-blob w-[300px] h-[300px] bottom-0 left-20" style="background:var(--mg-neon)"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+    <p class="breadcrumb mb-4">
+      <a href="index.html" class="hover:text-white transition-colors">Home</a>
+      &nbsp;/&nbsp;<span>Suppliers</span>
+    </p>
+    <p class="section-label reveal">Supplier Hub</p>
+    <h1 class="reveal reveal-delay-1 mt-4"
+        style="font-size:clamp(3rem,7vw,5.5rem);font-weight:800;line-height:1.05;letter-spacing:-.03em">
+      Powering the Hub<br>from the <span style="color:var(--mg-electric)">Ground Up.</span>
+    </h1>
+    <p class="reveal reveal-delay-2 mt-5 max-w-xl text-white/55 text-lg leading-relaxed">
+      MG Innovation Hub is built on a trusted network of local suppliers and service partners in Nakuru. Download our supplier documents, understand our standards, and apply to join the ecosystem.
+    </p>
+    <div class="reveal reveal-delay-3 mt-8 flex gap-3 flex-wrap">
+      <a href="#documents"  class="btn-primary px-6 py-3">Supplier Documents</a>
+      <a href="#standards"  class="btn-outline  px-6 py-3">Our Standards</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     TICKER
+═══════════════════════════════════ -->
+<div class="ticker-wrap relative z-10">
+  <div class="ticker-inner">
+    <span>Supplier Code of Conduct &nbsp;<b>✦</b></span>
+    <span>Procurement Policy &nbsp;<b>✦</b></span>
+    <span>Application Form &nbsp;<b>✦</b></span>
+    <span>Nakuru, Kenya &nbsp;<b>✦</b></span>
+    <span>Verified Suppliers &nbsp;<b>✦</b></span>
+    <span>KRA Compliant &nbsp;<b>✦</b></span>
+    <span>Local First Policy &nbsp;<b>✦</b></span>
+    <span>Supplier Code of Conduct &nbsp;<b>✦</b></span>
+    <span>Procurement Policy &nbsp;<b>✦</b></span>
+    <span>Application Form &nbsp;<b>✦</b></span>
+    <span>Nakuru, Kenya &nbsp;<b>✦</b></span>
+    <span>Verified Suppliers &nbsp;<b>✦</b></span>
+    <span>KRA Compliant &nbsp;<b>✦</b></span>
+    <span>Local First Policy &nbsp;<b>✦</b></span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     FOUR DOCUMENT CIRCLES
+═══════════════════════════════════ -->
+<section id="documents" class="relative z-10 py-28">
+  <div class="glow-blob w-[500px] h-[500px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style="background:var(--mg-electric)"></div>
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-16">
+      <p class="section-label justify-center reveal">Key Documents</p>
+      <h2 class="section-title mt-4 reveal reveal-delay-1">
+        Everything You Need<br>to <span class="hl">Get Started.</span>
+      </h2>
+      <p class="mt-4 text-[var(--mg-text-muted)] max-w-lg mx-auto reveal reveal-delay-2">
+        Download, read and complete the documents below before submitting your supplier application. All documents are free and available immediately.
+      </p>
+    </div>
+
+    <!-- Four circles -->
+    <div class="flex flex-wrap justify-center gap-8 reveal reveal-delay-2">
+
+      <!-- 1 — Supplier Application Form -->
+      <a href="https://drive.google.com/file/d/1wQ3uLxgqAaiBk_hw6HVcx3j0mMBYON40/view"
+         download="Advert Details"
+         class="doc-circle c1" title="Download Supplier Application Form">
+        <span class="doc-icon">📋</span>
+        <h3>Advert Details</h3>
+        <span class="dl-label">⬇ Download PDF</span>
+      </a>
+
+      <!-- 2 — Supplier Code of Conduct -->
+      <a href="https://drive.google.com/file/d/1hCT_-1ivuDVzSaQE1LwNwo1fvfl1AKKE/view"
+         download="Pre-Qualifications"
+         class="doc-circle c2" title="Download Supplier Code of Conduct">
+        <span class="doc-icon">📜</span>
+        <h3>Pre-Qualifications</h3>
+        <span class="dl-label">⬇ Download PDF</span>
+      </a>
+
+      <!-- 3 — Procurement Policy -->
+      <a href="https://drive.google.com/file/d/1lLrOy_3ScVlw88g_teTKnf1uAosLO2V2/view"
+         download="MG-CBQ"
+         class="doc-circle c3" title="Download Procurement Policy">
+        <span class="doc-icon">📑</span>
+        <h3>MG-CBQ</h3>
+        <span class="dl-label">⬇ Download PDF</span>
+      </a>
+
+      <!-- 4 — Supplier Terms & Conditions -->
+      <a href="https://drive.google.com/file/d/1Fh95hTaMTiuyz10UamhZx4Zk6pDjPnky/view"
+         download="Self Declaration Form"
+         class="doc-circle c4" title="Download Terms & Conditions">
+        <span class="doc-icon">⚖️</span>
+        <h3>Self Declaration Form</h3>
+        <span class="dl-label">⬇ Download PDF</span>
+      </a>
+
+    </div>
+
+    <!-- Note -->
+    <p class="text-center text-[var(--mg-text-muted)] text-sm mt-10 reveal">
+      Files not downloading? Email
+      <a href="mailto:info@mgihub" style="color:var(--mg-electric)" class="hover:underline">info@mgihub</a>
+      and we will send them directly.
+    </p>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     OUR STANDARDS
+═══════════════════════════════════ -->
+<section id="standards" class="relative z-10 py-28" style="background:var(--mg-surface)">
+  <div class="glow-blob w-[400px] h-[400px] -right-32 top-1/4" style="background:var(--mg-orange)"></div>
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-16">
+      <p class="section-label justify-center reveal">What We Expect</p>
+      <h2 class="section-title mt-4 reveal reveal-delay-1">
+        Our Supplier <span class="hl">Standards.</span>
+      </h2>
+      <p class="mt-4 text-[var(--mg-text-muted)] max-w-xl mx-auto reveal reveal-delay-2">
+        Every supplier working with MG Innovation Hub is expected to uphold these standards — no exceptions. They protect our community, your reputation, and the quality of everything we build together.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div class="standard-card reveal">
+        <div class="std-num">01</div>
+        <div class="text-2xl mb-3">✅</div>
+        <h3 class="syne font-bold text-base mb-2">Legal Compliance</h3>
+        <p class="text-[var(--mg-text-muted)] text-sm leading-relaxed">
+          All suppliers must hold valid KRA PIN, Tax Compliance Certificate and business registration documents. Compliance with Kenyan labour law is mandatory.
+        </p>
+      </div>
+
+      <div class="standard-card reveal reveal-delay-1">
+        <div class="std-num">02</div>
+        <div class="text-2xl mb-3">🤝</div>
+        <h3 class="syne font-bold text-base mb-2">Integrity &amp; Ethics</h3>
+        <p class="text-[var(--mg-text-muted)] text-sm leading-relaxed">
+          Zero tolerance for bribery, corruption or fraudulent practices. Suppliers must sign and uphold the MG Supplier Code of Conduct before any contract is awarded.
+        </p>
+      </div>
+
+      <div class="standard-card reveal reveal-delay-2">
+        <div class="std-num">03</div>
+        <div class="text-2xl mb-3">🏆</div>
+        <h3 class="syne font-bold text-base mb-2">Quality of Delivery</h3>
+        <p class="text-[var(--mg-text-muted)] text-sm leading-relaxed">
+          Products and services must meet agreed specifications. We operate SLA-based contracts — consistent underperformance results in offboarding with written notice.
+        </p>
+      </div>
+
+      <div class="standard-card reveal">
+        <div class="std-num">04</div>
+        <div class="text-2xl mb-3">⏱️</div>
+        <h3 class="syne font-bold text-base mb-2">Timeliness</h3>
+        <p class="text-[var(--mg-text-muted)] text-sm leading-relaxed">
+          On-time delivery is a core KPI for all supplier relationships. Delays must be communicated at least 48 hours in advance with a revised delivery plan.
+        </p>
+      </div>
+
+      <div class="standard-card reveal reveal-delay-1">
+        <div class="std-num">05</div>
+        <div class="text-2xl mb-3">🌍</div>
+        <h3 class="syne font-bold text-base mb-2">Local &amp; Sustainable</h3>
+        <p class="text-[var(--mg-text-muted)] text-sm leading-relaxed">
+          We prioritise Nakuru-based and Kenyan-owned businesses. Suppliers are encouraged to adopt environmentally responsible practices in their operations.
+        </p>
+      </div>
+
+      <div class="standard-card reveal reveal-delay-2">
+        <div class="std-num">06</div>
+        <div class="text-2xl mb-3">🔒</div>
+        <h3 class="syne font-bold text-base mb-2">Data &amp; Confidentiality</h3>
+        <p class="text-[var(--mg-text-muted)] text-sm leading-relaxed">
+          Suppliers must safeguard all MG Innovation Hub data they access. NDAs are required for any supplier with access to member, financial or operational information.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Payment promise -->
+    <!-- <div class="mt-12 p-6 border border-[var(--mg-electric)] rounded-sm reveal"
+         style="background:rgba(0,184,204,.05)">
+      <div class="flex flex-col md:flex-row md:items-center gap-6">
+        <div class="text-4xl flex-shrink-0">💳</div>
+        <div>
+          <h3 class="syne font-bold text-lg mb-1">Our Payment Promise</h3>
+          <p class="text-[var(--mg-text-muted)] text-sm leading-relaxed max-w-2xl">
+            MG Innovation Hub pays all verified supplier invoices within <strong style="color:var(--mg-electric)">14 calendar days</strong> of receipt and approval — no 30-day, no 60-day terms. We respect your cashflow because we know what it means to be a small business in Kenya.
+          </p>
+        </div>
+        <a href="#cta" class="btn-primary px-5 py-2.5 flex-shrink-0 whitespace-nowrap">Apply Now</a>
+      </div>
+    </div> -->
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FAQ
+═══════════════════════════════════ -->
+<section class="relative z-10 py-28">
+  <div class="glow-blob w-[400px] h-[400px] -left-32 top-1/2 -translate-y-1/2" style="background:var(--mg-neon)"></div>
+  <div class="max-w-3xl mx-auto px-6">
+
+    <div class="text-center mb-14">
+      <p class="section-label justify-center reveal">Supplier FAQ</p>
+      <h2 class="section-title mt-4 reveal reveal-delay-1">
+        Questions <span class="hl">Answered.</span>
+      </h2>
+    </div>
+
+    <div class="space-y-0 reveal">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Who can apply to become a supplier?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          Any registered business in Kenya can apply. We prioritise Nakuru-based and Kenyan-owned businesses, but welcome applications from across East Africa for specialised services not locally available. You must hold valid KRA PIN and business registration documents.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Is there a fee to apply or to be listed?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          No — the application process and supplier directory listing are completely free. We do not charge any onboarding, registration or listing fees. Revenue from our supplier relationships comes only from actual contracts awarded.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How long does the vetting process take?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          Initial application review takes up to 5 business days. Full due diligence — including document verification, reference checks, and an optional site visit — takes up to 10 additional business days. You will receive a written response either way.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What documents do I need to submit?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          Download the Supplier Application Form above and complete it in full. You will also need to attach: Certificate of Incorporation or Business Name Registration, KRA PIN Certificate, Tax Compliance Certificate, company profile or capability statement, and at least two reference contacts from previous clients.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What are the payment terms?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          All verified supplier invoices are paid within 14 calendar days of receipt and approval — no exceptions. We do not operate 30-day or 60-day payment cycles. Submit your invoice with correct bank details and our finance team will process it promptly.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Can MG alumni startups become suppliers?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          Absolutely — and we actively encourage it. MG alumni startups that offer relevant products or services are fast-tracked through the supplier application process. This is a core part of our commitment to circulating value within the Nakuru innovation ecosystem.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What happens after the pilot period?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">
+          Approved suppliers begin with a 3-month pilot contract with clear SLAs. If performance meets our benchmarks and community feedback is positive, you receive full Verified Supplier status, a preferred vendor agreement, and a promoted listing in our directory. Suppliers who underperform are offboarded with written feedback.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     CALL TO ACTION
+═══════════════════════════════════ -->
+<section id="cta" class="cta-section relative z-10 py-32">
+  <div class="cta-grid"></div>
+  <div class="absolute inset-0 pointer-events-none"
+       style="background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(0,229,255,.1) 0%,transparent 70%)"></div>
+
+  <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+    <p class="section-label justify-center reveal" style="color:var(--mg-electric)">Ready to Partner?</p>
+    <h2 class="reveal reveal-delay-1 mt-4"
+        style="font-size:clamp(2.2rem,4vw,3.4rem);font-weight:800;line-height:1.1;color:#fff">
+      Join 40+ Trusted Suppliers<br>Powering <span style="color:var(--mg-electric)">MG Innovation Hub.</span>
+    </h2>
+    <p class="mt-5 reveal reveal-delay-2" style="color:rgba(255,255,255,.55);font-size:1.05rem;max-width:36rem;margin:1.25rem auto 0">
+      Download the application form above, complete it, and email it to our procurement team. We will respond within 5 business days.
+    </p>
+
+    <!-- Steps -->
+    <div class="mt-10 grid sm:grid-cols-3 gap-4 reveal reveal-delay-3">
+      <div class="border border-white/10 rounded-sm p-4 text-center">
+        <div class="syne font-black text-2xl mb-1" style="color:var(--mg-electric)">01</div>
+        <div class="syne font-bold text-sm text-white mb-1">Download</div>
+        <p class="text-xs text-white/45">Get the application form above</p>
+      </div>
+      <div class="border border-white/10 rounded-sm p-4 text-center">
+        <div class="syne font-black text-2xl mb-1" style="color:var(--mg-neon)">02</div>
+        <div class="syne font-bold text-sm text-white mb-1">Complete &amp; Email</div>
+        <p class="text-xs text-white/45">Send to info@mgihub.com</p>
+      </div>
+      <div class="border border-white/10 rounded-sm p-4 text-center">
+        <div class="syne font-black text-2xl mb-1" style="color:var(--mg-orange)">03</div>
+        <div class="syne font-bold text-sm text-white mb-1">We Review</div>
+        <p class="text-xs text-white/45">Response within 5 business days</p>
+      </div>
+    </div>
+
+    <div class="mt-10 flex gap-4 justify-center flex-wrap reveal reveal-delay-4">
+      <a href="docs/supplier-application-form.pdf" download="MG-Supplier-Application-Form.pdf"
+         class="btn-primary text-base px-8 py-3">⬇ Download Application</a>
+      <a href="mailto:info@mgihub.com" class="btn-outline text-base px-8 py-3">Contact Procurement</a>
+    </div>
+
+    <p class="mt-6 text-white/30 text-xs reveal reveal-delay-4">
+      Questions? Email
+      <a href="mailto:info@mgihub.com" style="color:var(--mg-electric)" class="hover:underline">info@mgihub.com</a>
+      or call +254 790 885 761
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="relative z-10">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <!-- Brand -->
+      <div class="lg:col-span-1">
+        <a href="index.html" class="flex items-center gap-2 mb-4">
+          <img src="/SRC/mgihub.jpeg" alt="MG Innovation Hub" style="height:48px;width:48px;object-fit:contain;display:block;"/>
+        </a>
+        <p class="text-white/40 text-sm leading-relaxed">
+          Africa's premier innovation ecosystem. Building the future, one breakthrough at a time.
+        </p>
+        <div class="flex gap-2 mt-5">
+          <a href="https://x.com/MgIhub" class="social-btn" aria-label="Twitter">𝕏</a>
+          <a href="https://www.linkedin.com/company/mg-innovation-hub-kenya/" class="social-btn" aria-label="LinkedIn">in</a>
+          <a href="https://www.instagram.com/mgihub?igsh=MWdsMDQ4ejFxYno3YQ==" class="social-btn" aria-label="Instagram">◎</a>
+          <a href="https://www.facebook.com/share/1DZTvBLJVX/" class="social-btn" aria-label="Facebook">F</a>
+          <a href="https://www.tiktok.com/@mgihub5?_r=1&_t=ZS-98ovQ4Zyz1E" class="social-btn" aria-label="Tiktok">T</a>
+          <a href="https://www.youtube.com/results?search_query=Mgihub" class="social-btn" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h4 class="syne font-bold text-sm mb-4 tracking-wide">Company</h4>
+        <ul class="space-y-2.5">
+          <li><a href="/Pages/About.html" class="footer-link">About Us</a></li>
+          <li><a href="/Pages/Services.html" class="footer-link">Services</a></li>
+          <li><a href="/Pages/Events.html" class="footer-link">Events</a></li>
+          <li><a href="/Pages/Supplier.html" class="footer-link">Suppliers</a></li>
+          <li><a href="/Pages/Gallery.html" class="footer-link">Gallery</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="syne font-bold text-sm mb-4 tracking-wide">Services</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#services" class="footer-link">Entrepreneurship</a></li>
+          <li><a href="#services" class="footer-link">Innovation labs</a></li>
+          <li><a href="#services" class="footer-link">Digital Skills Training</a></li>
+          <li><a href="#services" class="footer-link">Community & Events</a></li>
+          <li><a href="#services" class="footer-link">Marketing &Access</a></li>
+        <li><a href="#services" class="footer-link">Growth & Scaling</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="syne font-bold text-sm mb-4 tracking-wide">Contact</h4>
+        <ul class="space-y-3">
+          <li class="text-white/40 text-sm flex gap-2 items-start">
+            <span class="text-[var(--mg-electric)] mt-0.5">📍</span>
+            Riva PLaza, Nakuru, Kenya
+          </li>
+          <li><a href="mailto:info@mgihub.com" class="footer-link text-sm">info@mgihub.com</a></li>
+          <li><a href="tel:+254790885761" class="footer-link text-sm">+254 790 885 761</a></li>
+        </ul>
+        <div class="mt-5">
+          <p class="text-white/25 text-xs mb-2">Newsletter</p>
+          <div class="flex gap-2">
+            <input type="email" placeholder="your@email.com" id="footer-email"
+              class="flex-1 bg-white/5 border border-white/10 px-3 py-2 text-xs text-white placeholder-white/20 focus:outline-none focus:border-[var(--mg-electric)] transition-colors rounded-sm min-w-0"/>
+            <button onclick="handleFooterSub()" class="bg-[var(--mg-electric)] text-[var(--mg-ink)] px-3 py-2 text-xs font-bold syne rounded-sm hover:opacity-90 transition-opacity">→</button>
+          </div>
+          <p id="footer-msg" class="text-[var(--mg-neon)] text-xs mt-1 hidden">✓ Subscribed!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p class="text-white/25 text-xs">
+        © 2025 MG Innovation Hub Ltd. All rights reserved.
+      </p>
+      <div class="flex gap-5">
+        <a href="#" class="footer-link text-xs">Privacy Policy</a>
+        <a href="#" class="footer-link text-xs">Terms of Use</a>
+        <a href="#" class="footer-link text-xs">Cookie Settings</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════ -->
+<script>
+/* ── THEME TOGGLE ── */
+(function(){
+  try{ if(localStorage.getItem('mg-theme')==='light') document.documentElement.classList.add('light'); }catch(e){}
+})();
+function applyTheme(light){
+  document.documentElement.classList.toggle('light',light);
+  try{ localStorage.setItem('mg-theme',light?'light':'dark'); }catch(e){}
+  var moon=document.getElementById('icon-moon');
+  var sun=document.getElementById('icon-sun');
+  if(moon) moon.style.opacity=light?'0.35':'1';
+  if(sun)  sun.style.opacity=light?'1':'0.35';
+}
+function bindToggle(){
+  var btn=document.getElementById('theme-toggle');
+  if(!btn) return;
+  var light=document.documentElement.classList.contains('light');
+  var moon=document.getElementById('icon-moon');
+  var sun=document.getElementById('icon-sun');
+  if(moon) moon.style.opacity=light?'0.35':'1';
+  if(sun)  sun.style.opacity=light?'1':'0.35';
+  btn.onclick=function(){ applyTheme(!document.documentElement.classList.contains('light')); };
+}
+bindToggle();
+document.addEventListener('DOMContentLoaded',bindToggle);
+window.addEventListener('load',bindToggle);
+
+/* ── NAV ── */
+window.addEventListener('scroll',function(){
+  var nb=document.getElementById('navbar');
+  if(nb) nb.classList.toggle('scrolled',window.scrollY>60);
+},{passive:true});
+var ham=document.getElementById('hamburger');
+if(ham) ham.addEventListener('click',function(){
+  var m=document.getElementById('mobile-menu');
+  if(m) m.classList.toggle('open');
+});
+document.querySelectorAll('#mobile-menu a').forEach(function(a){
+  a.addEventListener('click',function(){
+    var m=document.getElementById('mobile-menu');
+    if(m) m.classList.remove('open');
+  });
+});
+
+/* ── FAQ ── */
+function toggleFaq(el){
+  var item=el.parentElement;
+  var isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if(!isOpen) item.classList.add('open');
+}
+
+/* ── SCROLL REVEAL ── */
+function initReveal(){
+  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('will-animate'); });
+}
+function triggerReveal(){
+  document.querySelectorAll('.reveal.will-animate:not(.visible)').forEach(function(el){
+    if(el.getBoundingClientRect().top<window.innerHeight-40) el.classList.add('visible');
+  });
+}
+window.addEventListener('load',function(){ initReveal(); triggerReveal(); });
+document.addEventListener('DOMContentLoaded',function(){ initReveal(); triggerReveal(); });
+window.addEventListener('scroll',triggerReveal,{passive:true});
+setTimeout(function(){ initReveal(); triggerReveal(); },150);
+setTimeout(triggerReveal,500);
+
+/* ── FOOTER SUB ── */
+function handleFooterSub(){
+  var el=document.getElementById('footer-email');
+  var msg=document.getElementById('footer-msg');
+  if(!el||!el.value||el.value.indexOf('@')<0) return;
+  el.value='';
+  if(msg){ msg.classList.remove('hidden'); setTimeout(function(){ msg.classList.add('hidden'); },4000); }
+}
+var fe=document.getElementById('footer-email');
+if(fe) fe.addEventListener('keydown',function(e){ if(e.key==='Enter') handleFooterSub(); });
+</script>
+</body>
+</html>
