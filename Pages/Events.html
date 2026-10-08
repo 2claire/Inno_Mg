@@ -258,12 +258,13 @@
 <nav id="navbar" class="py-4">
   <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
     <!-- Logo -->
-    <a href="index.html" class="nav-logo flex items-center gap-2">
+    <a href="/Pages/index.html" class="nav-logo flex items-center gap-2">
       <img src="/SRC/mgihub.jpeg" alt="MG Innovation Hub" style="height:48px;width:auto;object-fit:contain;display:block;"/>
     </a>
 
     <!-- Desktop Links -->
     <div class="hidden md:flex items-center gap-8">
+      <a href="/Pages/index.html" class="nav-link">Home</a>
       <a href="/Pages/About.html" class="nav-link">About</a>
       <a href="/Pages/Services.html" class="nav-link">Services</a>
       <a href="/Pages/Supplier.html" class="nav-link">Suppliers</a>
@@ -291,6 +292,7 @@
 
   <!-- Mobile Menu -->
   <div id="mobile-menu">
+    <a href="/Pages/index.html" class="nav-link text-lg">Home</a>
     <a href="/Pages/About.html" class="nav-link text-lg">About</a>
     <a href="/Pages/Services.html" class="nav-link text-lg">Services</a>
     <a href="/Pages/Supplier.html" class="nav-link text-lg">Suppliers</a>
@@ -307,12 +309,41 @@
 <section class="page-hero pt-24">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
+  <div class="hero-grid-lines"></div>
+
+  <!-- Glow -->
+  <div class="glow-blob w-[600px] h-[400px] top-0 right-0"
+       style="background:var(--mg-electric)"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+    <p class="breadcrumb mb-4">
+      <a href="/Pages/index.html" class="hover:text-white transition-colors">Home</a>
+      &nbsp;/&nbsp;<span>About</span>
+    </p>
+    <p class="section-label reveal">Our Story</p>
+    <h1 class="reveal reveal-delay-1 mt-4"
+        style="font-size:clamp(3rem,7vw,6rem);font-weight:800;line-height:1;letter-spacing:-.03em">
+      We Are MG<br>
+      <span style="color:var(--mg-electric)">Innovation</span> Hub.
+    </h1>
+    <p class="reveal reveal-delay-2 mt-6 max-w-xl text-white/55 text-lg leading-relaxed">
+      Born in Nakuru. Built for Africa. Driven by a relentless belief that the continent's greatest innovations are still ahead.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PAGE HERO
+════════════════════════════════════════ -->
+<section class="page-hero pt-24">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
   <div class="glow-blob w-[500px] h-[400px] top-0 right-0" style="background:var(--mg-electric)"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
     <p class="breadcrumb mb-4">
-      <a href="index.html" class="hover:text-white transition-colors">Home</a>
+      <a href="/Pages/index.html" class="hover:text-white transition-colors">Home</a>
       &nbsp;/&nbsp;<span>Events</span>
     </p>
     <p class="section-label reveal">What's On</p>
@@ -363,7 +394,7 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="stat-card reveal text-center">
-        <div class="stat-value counter" data-target="80" data-suffix="+">0</div>
+        <div class="stat-value counter" data-target="5" data-suffix="+">0</div>
         <div class="text-[var(--mg-text-muted)] text-sm mt-2">Events Per Year</div>
       </div>
       <div class="stat-card reveal reveal-delay-1 text-center">
@@ -371,12 +402,12 @@
         <div class="text-[var(--mg-text-muted)] text-sm mt-2">Avg. Attendees / Summit</div>
       </div>
       <div class="stat-card reveal reveal-delay-2 text-center">
-        <div class="stat-value counter" data-target="200" data-suffix="+">0</div>
+        <div class="stat-value counter" data-target="120" data-suffix="+">0</div>
         <div class="text-[var(--mg-text-muted)] text-sm mt-2">Investors in Network</div>
       </div>
       <div class="stat-card reveal reveal-delay-3 text-center">
-        <div class="stat-value counter" data-target="7" data-suffix="">0</div>
-        <div class="text-[var(--mg-text-muted)] text-sm mt-2">Countries Covered</div>
+        <div class="stat-value counter" data-target="5" data-suffix="">0</div>
+        <div class="text-[var(--mg-text-muted)] text-sm mt-2">Counties Covered</div>
       </div>
     </div>
   </div>
@@ -399,8 +430,8 @@
           <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--mg-surface)] hidden lg:block"></div>
           <div class="absolute top-4 left-4">
             <div class="event-date-badge">
-              <span class="day">10</span>
-              <span class="mon">october</span>
+              <span class="day">14</span>
+              <span class="mon">Jun</span>
             </div>
           </div>
         </div>
@@ -414,15 +445,15 @@
           <div class="grid grid-cols-2 gap-3 mb-6 text-sm">
             <div class="event-meta-item">
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-              10 October 2026
+              14–15 June 2026
             </div>
             <div class="event-meta-item">
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-              Kio Tvet Dundori
+              KICC, Nairobi
             </div>
             <div class="event-meta-item">
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              10:00 AM – 3:00 PM
+              8:00 AM – 8:00 PM
             </div>
             <div class="event-meta-item">
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -461,19 +492,106 @@
 <!-- ══════════════════════════════════════
      UPCOMING EVENTS GRID
 ════════════════════════════════════════ -->
+<style>
+  /* Horizontal event card */
+  .event-card-h {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    border: 1px solid var(--mg-border);
+    background: var(--mg-surface);
+    border-radius: 4px;
+    min-height: 240px;
+    cursor: pointer;
+    transition: border-color .3s, transform .3s;
+  }
+  .event-card-h:hover { border-color: var(--mg-electric); transform: translateY(-4px); }
+
+  /* Image panel */
+  .event-card-h .ec-img {
+    width: 280px;
+    min-width: 280px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .event-card-h .ec-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block; min-height: 240px;
+    filter: brightness(.8);
+    transition: transform .45s ease, filter .45s ease;
+  }
+  .event-card-h:hover .ec-img img { transform: scale(1.05); filter: brightness(1); }
+
+  /* Content panel */
+  .event-card-h .ec-body {
+    flex: 1;
+    padding: 1.6rem 1.9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+  }
+  .event-card-h .ec-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    color: var(--mg-text);
+    margin-bottom: .65rem;
+  }
+  .event-card-h .ec-desc {
+    font-size: .88rem;
+    color: var(--mg-text-muted);
+    line-height: 1.75;
+    margin-bottom: 1.1rem;
+  }
+  .event-card-h .ec-meta { display: flex; flex-direction: column; gap: .55rem; margin-bottom: 1.1rem; }
+  .event-card-h .ec-meta-row {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .83rem; color: var(--mg-text-muted);
+  }
+  .event-card-h .ec-meta-row svg { flex-shrink: 0; opacity: .7; }
+  .event-card-h .ec-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--mg-border);
+  }
+  .event-card-h .ec-price {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: .78rem; letter-spacing: .06em;
+  }
+
+  /* Mobile: stack vertically */
+  @media(max-width: 600px) {
+    .event-card-h { flex-direction: column; min-height: unset; }
+    .event-card-h .ec-img { width: 100%; min-width: unset; min-height: 200px; }
+    .event-card-h .ec-body { padding: 1.25rem; }
+  }
+
+  /* Light mode text fixes for horizontal cards */
+  html.light .event-card-h .ec-title { color: #000; }
+  html.light .event-card-h .ec-desc  { color: rgba(0,0,0,.6); }
+  html.light .event-card-h .ec-meta-row { color: rgba(0,0,0,.55); }
+  html.light .event-card-h { background: #fff; }
+</style>
+
 <section id="upcoming" class="relative z-10 py-28">
   <div class="glow-blob w-[400px] h-[400px] -left-32 top-1/3" style="background:var(--mg-orange)"></div>
-  <div class="max-w-7xl mx-auto px-6">
+  <div class="max-w-5xl mx-auto px-6">
 
+    <!-- Header + Search -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
       <div>
         <p class="section-label reveal">Upcoming</p>
         <h2 class="section-title mt-4 reveal reveal-delay-1">All <span class="hl">Events.</span></h2>
       </div>
-      <!-- Search -->
       <div class="reveal reveal-delay-2">
         <input type="text" id="event-search" placeholder="Search events…"
-          class="bg-[var(--mg-surface)] border border-[var(--mg-border)] px-4 py-2.5 text-sm text-[var(--mg-text)] placeholder-[var(--mg-text-muted)] focus:outline-none focus:border-[var(--mg-electric)] transition-colors rounded-sm w-64"/>
+          class="bg-[var(--mg-surface)] border border-[var(--mg-border)] px-4 py-2.5 text-sm
+                 text-[var(--mg-text)] placeholder-[var(--mg-text-muted)]
+                 focus:outline-none focus:border-[var(--mg-electric)] transition-colors rounded-sm w-64"/>
       </div>
     </div>
 
@@ -488,111 +606,75 @@
       <button class="filter-btn" data-filter="tour">Tech Tour</button>
     </div>
 
-    <!-- Events Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="events-grid">
+    <!-- Events List — horizontal cards, one per row -->
+    <div class="flex flex-col gap-5" id="events-grid">
 
-<!-- Event 1 -->
-<div class="event-card reveal" data-type="pitch" onclick="openModal('pitch2')"
-     style="display:flex; flex-direction:row; overflow:hidden; padding:0; min-height:260px;">
-
-  <!-- LEFT — Image -->
-  <div class="event-thumb-wrap" style="width:260px; min-width:260px; flex-shrink:0; position:relative;">
-    <img src="/SRC/Community/Mazingira.jpeg" alt="Tree Planting" class="event-thumb"
-         style="width:100%; height:100%; object-fit:cover; min-height:260px;"/>
-    <div class="event-date-badge"><span class="day">10</span><span class="mon">Oct</span></div>
-    <span class="event-type-badge" style="background:rgba(0,184,204,.85);color:#000">Tree Planting</span>
-  </div>
-
-  <!-- RIGHT — Content -->
-  <div class="flex flex-col justify-between flex-1" style="padding:1.5rem 1.75rem;">
-
-    <div>
-      <h3 class="syne font-bold mb-3" style="font-size:1.2rem; line-height:1.3;">
-        Tree Planting Initiative
-      </h3>
-      <p class="text-[var(--mg-text-muted)] leading-relaxed mb-5" style="font-size:.9rem;">
-        Join us as we give back to nature — planting trees across Nakuru County as part of our annual environmental stewardship programme. Open to all community members, startups and partners.
-      </p>
-      <div class="flex flex-col gap-2 mb-5">
-        <div class="event-meta-item" style="font-size:.85rem;">
-          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
-          </svg>
-          10 October 2026 &nbsp;·&nbsp; 8:00 AM – 1:00 PM
+      <!-- ── EVENT 1 — Tree Planting ── -->
+      <div class="event-card-h reveal" data-type="workshop" onclick="openModal('pitch2')">
+        <div class="ec-img">
+          <img src="/SRC/Community/Mazingira.jpeg" alt="Tree Planting Initiative"/>
+          <div class="event-date-badge"><span class="day">10</span><span class="mon">Oct</span></div>
+          <span class="event-type-badge" style="background:rgba(182,255,78,.9);color:#000">🌱 Tree Planting</span>
         </div>
-        <div class="event-meta-item" style="font-size:.85rem;">
-          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-            <circle cx="12" cy="9" r="2.5"/>
-          </svg>
-          MG Innovation Hub, Nakuru CBD
-        </div>
-        <div class="event-meta-item" style="font-size:.85rem;">
-          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-          Open to All · 80 Spots Available
+        <div class="ec-body">
+          <div>
+            <h3 class="ec-title">Tree Planting Initiative — Mazingira Day</h3>
+            <p class="ec-desc">As we come together on Mazingira Day to grow a greener future, restore our environment, and make a lasting impact for generations to come. All community members, startups and partners are welcome.</p>
+            <div class="ec-meta">
+              <div class="ec-meta-row">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                10 October 2026 &nbsp;·&nbsp; 8:00 AM – 1:00 PM
+              </div>
+              <div class="ec-meta-row">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Dundori Kio TVET, Nakuru County
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="flex items-center justify-between" style="padding-top:1rem; border-top:1px solid var(--mg-border);">
-      <span class="syne font-bold" style="color:var(--mg-neon); font-size:.8rem; letter-spacing:.04em;">
-        FREE ENTRY
-      </span>
-      <a href="#" onclick="event.stopPropagation()" 
-         class="btn-primary" style="font-size:.78rem; padding:.45rem 1.1rem;">
-        Register Now →
-      </a>
-    </div>
-
-  </div>
-
-</div>
-      <!-- Event 1 -->
-      <!-- <div class="event-card reveal" data-type="workshop" onclick="openModal('workshop1')">
-        <div class="event-thumb-wrap">
-          <img src="/SRC/Community/Mazingira.jpeg" alt="Pitch Night" class="event-thumb"/>
-          <div class="event-date-badge"><span class="day">10</span><span class="mon">Oct</span></div>
-          <span class="event-type-badge" style="background:rgba(0,184,204,.85);color:#000">Tree Planting</span>
+      <!-- ── EVENT 2 — Pitch Night ── -->
+      <!-- <div class="event-card-h reveal" data-type="pitch" onclick="openModal('pitch1')">
+        <div class="ec-img">
+          <img src="https://images.unsplash.com/photo-1558403194-611308249627?w=600&q=80" alt="Pitch Night"/>
+          <div class="event-date-badge"><span class="day">03</span><span class="mon">Jun</span></div>
+          <span class="event-type-badge" style="background:rgba(0,184,204,.85);color:#000">Pitch Night</span>
         </div>
-        <div class="p-5">
-          <h3 class="syne font-bold text-lg mb-2">Tree Planting Initiative</h3>
-          <p class="text-[var(--mg-text-muted)] text-sm mb-4 leading-relaxed">As we come together on Mazingira Day to grow a greener future, restore our environment, and make a lasting impact for generations to come.</p>
-          <div class="flex flex-col gap-1.5 mb-4">
-            <div class="event-meta-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>10 October 2026</div>
-            <div class="event-meta-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Dundori Kio Tvet</div>
+        <div class="ec-body">
+          <div>
+            <h3 class="ec-title">MG Pitch Night #32</h3>
+            <p class="ec-desc">Ten startups. Eighty investors. One unforgettable evening of bold ideas and live funding decisions on the MG Hub stage, Nakuru.</p>
+            <div class="ec-meta">
+              <div class="ec-meta-row">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                3 June 2026 &nbsp;·&nbsp; 5:00 PM – 9:00 PM
+              </div>
+              <div class="ec-meta-row">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                MG Hub Auditorium, Nakuru
+              </div>
+              <div class="ec-meta-row">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                80 Investor Spots
+              </div>
+            </div>
+          </div>
+          <div class="ec-footer">
+            <span class="ec-price" style="color:var(--mg-neon)">FREE · 80 spots left</span>
+            <a href="#" onclick="event.stopPropagation()" class="btn-primary" style="font-size:.78rem;padding:.45rem 1.1rem;">Register Now →</a>
           </div>
         </div>
       </div> -->
 
-      <!-- Event 2 -->
-      <!-- <div class="event-card reveal" data-type="pitch" onclick="openModal('pitch2')">
-        <div class="event-thumb-wrap">
-          <img src="/SRC/Community/Mazingira.jpeg" alt="Pitch Night" class="event-thumb"/>
-          <div class="event-date-badge"><span class="day">10</span><span class="mon">Oct</span></div>
-          <span class="event-type-badge" style="background:rgba(0,184,204,.85);color:#000">Tree Planting</span>
-        </div>
-        <div class="p-5">
-          <h3 class="syne font-bold text-lg mb-2">Tree Planting Initiative</h3>
-          <p class="text-[var(--mg-text-muted)] text-sm mb-4 leading-relaxed">Ten startups. Eighty investors. One unforgettable evening of bold ideas and live funding decisions.</p>
-          <div class="flex flex-col gap-1.5 mb-4">
-            <div class="event-meta-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>3 June 2026 · 5:00 PM</div>
-            <div class="event-meta-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>MG Hub Auditorium, Nairobi</div>
-          </div>
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-semibold syne" style="color:var(--mg-neon)">FREE · 80 spots left</span>
-            <span class="text-xs text-[var(--mg-electric)]">Register →</span>
-          </div>
-        </div>
-      </div> -->
+
 
     </div>
 
     <!-- No results message -->
-    <p id="no-results" class="text-center text-[var(--mg-text-muted)] mt-12 hidden">No events match your filter. Try a different category.</p>
+    <p id="no-results" class="text-center text-[var(--mg-text-muted)] mt-12 hidden">
+      No events match your filter. Try a different category.
+    </p>
   </div>
 </section>
 
@@ -653,11 +735,20 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
       <div class="past-card reveal">
-        <img src="/SRC/Community/creators7.jpg" alt="Summit 2025" class="past-thumb"/>
+        <img src="/SRC/Community/kio2.jpg" alt="Summit 2025" class="past-thumb"/>
         <div class="p-4">
-          <div class="text-xs text-[var(--mg-text-muted)] mb-1">Summit · September 2026</div>
-          <h4 class="syne font-bold text-sm">Creators Masterclass 2026</h4>
-          <p class="text-xs text-[var(--mg-text-muted)] mt-1">100 attendees · 4 speakers </p>
+          <div class="text-xs text-[var(--mg-text-muted)] mb-1">Innovation · Sep 2026</div>
+          <h4 class="syne font-bold text-sm">Innovation Bootcamp</h4>
+          <p class="text-xs text-[var(--mg-text-muted)] mt-1">1,200 attendees · 65 speakers · 7 countries</p>
+        </div>
+      </div>
+
+      <div class="past-card reveal reveal-delay-1">
+        <img src="/SRC/Community/creators7.jpg" alt="Hackathon 2025" class="past-thumb"/>
+        <div class="p-4">
+          <div class="text-xs text-[var(--mg-text-muted)] mb-1">Masterclass · Sep 2026</div>
+          <h4 class="syne font-bold text-sm">Creators Masterclass</h4>
+          <p class="text-xs text-[var(--mg-text-muted)] mt-1">100 participants · 4 speakers · 1 conversation</p>
         </div>
       </div>
 
@@ -702,7 +793,7 @@
 
       <!-- Brand -->
       <div class="lg:col-span-1">
-        <a href="index.html" class="flex items-center gap-2 mb-4">
+        <a href="/Pages/index.html" class="flex items-center gap-2 mb-4">
           <img src="/SRC/mgihub.jpeg" alt="MG Innovation Hub" style="height:48px;width:48px;object-fit:contain;display:block;"/>
         </a>
         <p class="text-white/40 text-sm leading-relaxed">
@@ -750,7 +841,7 @@
             <span class="text-[var(--mg-electric)] mt-0.5">📍</span>
             Riva PLaza, Nakuru, Kenya
           </li>
-          <li><a href="mailto:info@mgihub.com" class="footer-link text-sm">info@mgihub.com</a></li>
+          <li><a href="mailto:hello@mginnovationhub.co" class="footer-link text-sm">info@mgihub.com</a></li>
           <li><a href="tel:+254790885761" class="footer-link text-sm">+254 790 885 761</a></li>
         </ul>
         <div class="mt-5">
@@ -835,7 +926,7 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const filter=btn.dataset.filter;
-    const cards=document.querySelectorAll('#events-grid .event-card');
+    const cards=document.querySelectorAll('#events-grid .event-card-h');
     let visible=0;
     cards.forEach(card=>{
       const show=filter==='all'||card.dataset.type===filter;
@@ -853,7 +944,7 @@ document.getElementById('event-search').addEventListener('input',applySearch);
 function applySearch(){
   const q=document.getElementById('event-search').value.toLowerCase();
   const activeFilter=document.querySelector('.filter-btn.active').dataset.filter;
-  const cards=document.querySelectorAll('#events-grid .event-card');
+  const cards=document.querySelectorAll('#events-grid .event-card-h');
   let visible=0;
   cards.forEach(card=>{
     const typeOk=activeFilter==='all'||card.dataset.type===activeFilter;
@@ -885,13 +976,18 @@ updateCountdown();
 
 // ── CALENDAR ──────────────────────────────
 const events={
-  '2026-09-24':[{label:'Creators Masterclass',dot:''}],
-  '2026-10-10':[{label:'Mazingira Day',dot:'dot-neon'}],
-  '2026-09-18':[{label:'Fireside Chat',dot:'dot-orange'}],
-
+  '2026-06-03':[{label:'Pitch Night #32',dot:''}],
+  '2026-06-07':[{label:'AgriTech Hack',dot:'dot-neon'}],
+  '2026-06-14':[{label:'MG Summit Day 1',dot:''}],
+  '2026-06-15':[{label:'MG Summit Day 2',dot:''}],
+  '2026-06-20':[{label:'Fireside Chat',dot:'dot-orange'}],
+  '2026-06-28':[{label:'LLMs Workshop',dot:'dot-neon'}],
+  '2026-07-05':[{label:'Tech Safari',dot:'dot-orange'}],
+  '2026-07-12':[{label:'Pitch Night #33',dot:''}],
+  '2026-07-18':[{label:'FinTech Hackathon',dot:'dot-neon'}],
 };
 
-let calYear=2026, calMonth=5; // 0-indexed, 5=June
+let calYear=2026, calMonth=9; // 0-indexed, 9=October
 const monthNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 function renderCalendar(){
@@ -969,54 +1065,6 @@ const modalData={
     </ul>`,
     btn:'Reserve My Spot'
   },
-  hack1:{
-    title:'AgriTech Hackathon 2026',
-    tag:'Hackathon · 7–9 June 2026',
-    color:'var(--mg-neon)',
-    body:`<p style="color:var(--mg-text-muted);font-size:.9rem;line-height:1.7;margin-bottom:1rem">48 hours to reimagine food systems across East Africa. Teams of 2–5 compete for a $10,000 prize pool across three tracks: Supply Chain, Smallholder Finance, and Climate-Smart Farming.</p>
-    <ul style="font-size:.875rem;color:var(--mg-text-muted);line-height:2;list-style:none;margin-bottom:1.2rem">
-      <li>📍 MG Hub + Remote &nbsp;|&nbsp; ⏰ Fri 6PM – Sun 6PM</li>
-      <li>🏆 $10,000 prize pool &nbsp;|&nbsp; 👥 120 participant cap</li>
-      <li>💰 KES 500 entry fee · Teams of 2–5</li>
-    </ul>`,
-    btn:'Register Your Team'
-  },
-  fireside1:{
-    title:'Fireside: Building in Public',
-    tag:'Fireside Chat · 20 June 2026',
-    color:'var(--mg-neon)',
-    body:`<p style="color:var(--mg-text-muted);font-size:.9rem;line-height:1.7;margin-bottom:1rem">An unfiltered conversation with two founders who documented every step of their zero-to-one journey publicly — the wins, the pivots, and the near-death moments.</p>
-    <ul style="font-size:.875rem;color:var(--mg-text-muted);line-height:2;list-style:none;margin-bottom:1.2rem">
-      <li>📍 MG Hub Lounge + Livestream &nbsp;|&nbsp; ⏰ 6:30 PM – 8:30 PM</li>
-      <li>👥 In-person cap: 60 &nbsp;|&nbsp; 🎙 Livestreamed globally</li>
-      <li>💰 FREE · RSVP for in-person seat</li>
-    </ul>`,
-    btn:'RSVP Now'
-  },
-  ws1:{
-    title:'Intro to LLMs for Founders',
-    tag:'Workshop · 28 June 2026',
-    color:'var(--mg-electric)',
-    body:`<p style="color:var(--mg-text-muted);font-size:.9rem;line-height:1.7;margin-bottom:1rem">A practical half-day session designed for non-technical founders: understand how large language models work, identify high-value use cases for your product, and leave with a working proof-of-concept.</p>
-    <ul style="font-size:.875rem;color:var(--mg-text-muted);line-height:2;list-style:none;margin-bottom:1.2rem">
-      <li>📍 MG Hub Lab 2 &nbsp;|&nbsp; ⏰ 9:00 AM – 1:00 PM</li>
-      <li>👥 40 seats only &nbsp;|&nbsp; 💻 Bring your laptop</li>
-      <li>💰 KES 1,500 · Members get 20% off</li>
-    </ul>`,
-    btn:'Book My Seat'
-  },
-  tour1:{
-    title:'East Africa Tech Safari — Kigali',
-    tag:'Tech Tour · 5–7 July 2026',
-    color:'var(--mg-neon)',
-    body:`<p style="color:var(--mg-text-muted);font-size:.9rem;line-height:1.7;margin-bottom:1rem">A three-day cross-border immersion into Rwanda's thriving tech ecosystem. Visit 10+ startups, meet VCs, attend curated dinners, and build relationships that transcend borders.</p>
-    <ul style="font-size:.875rem;color:var(--mg-text-muted);line-height:2;list-style:none;margin-bottom:1.2rem">
-      <li>📍 Kigali, Rwanda &nbsp;|&nbsp; ⏰ 3-day programme</li>
-      <li>👥 25 participants max &nbsp;|&nbsp; ✈ Transport + hotel included</li>
-      <li>💰 KES 18,000 all-inclusive</li>
-    </ul>`,
-    btn:'Join the Safari'
-  }
 };
 
 function openModal(key){
