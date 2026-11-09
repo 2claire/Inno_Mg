@@ -8,6 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
   <style>
+
+    /* ── NAV HEIGHT VARIABLE (set by JS below) ── */
+    :root { --nav-h: 72px; }
     :root {
       --mg-ink:      #0A0A0F;
       --mg-electric: #00B8CC;
@@ -29,8 +32,8 @@
     html.light {
       --mg-ink:        #F0F4F8;
       --mg-electric:   #30aadf;
-      --mg-neon:       #30aadf;
-      --mg-orange:     #30aadf;
+      --mg-neon:       #3d8c00;
+      --mg-orange:     #D9541A;
       --mg-surface:    #FFFFFF;
       --mg-glass:      rgba(0,0,0,0.03);
       --mg-border:     rgba(0,0,0,0.10);
@@ -428,6 +431,268 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--mg-ink); }
     ::-webkit-scrollbar-thumb { background: var(--mg-electric); border-radius: 10px; }
+  
+    /* ════════════════════════════════════════════════════════
+       GLOBAL RESPONSIVE FIXES — all breakpoints
+    ════════════════════════════════════════════════════════ */
+
+    /* Fluid section padding */
+    @media(max-width:768px){
+      section { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+    }
+    @media(max-width:480px){
+      section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+    }
+
+    /* Fluid horizontal padding on all containers */
+    @media(max-width:640px){
+      .max-w-7xl, .max-w-5xl, .max-w-4xl, .max-w-3xl {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+    }
+
+    /* Nav — tighten on small screens */
+    @media(max-width:380px){
+      #navbar { padding-left:.75rem; padding-right:.75rem; }
+      .nav-logo img { height:38px !important; }
+    }
+
+    /* Hero title — more aggressive clamp on very small phones */
+    .hero-title { font-size: clamp(2rem, 8vw, 5.5rem) !important; }
+    .page-hero h1 { font-size: clamp(1.8rem, 7vw, 4rem) !important; }
+    .section-title { font-size: clamp(1.6rem, 5vw, 3.2rem) !important; }
+
+    /* Hero CTA buttons — stack on very small screens */
+    @media(max-width:400px){
+      .hero-slide .flex.gap-4, .page-hero .flex.gap-4 {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+      }
+      .btn-primary, .btn-outline {
+        width:100%; text-align:center; justify-content:center;
+      }
+    }
+
+    /* Stats strip — 2-col on mobile, already md:4 */
+    @media(max-width:479px){
+      .grid.grid-cols-2.md\:grid-cols-4 {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    /* About photo grid — single col on mobile */
+    @media(max-width:639px){
+      .grid.grid-cols-2.gap-4:not(.social-grid) {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Footer — stack columns on mobile */
+    @media(max-width:639px){
+      footer .grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+    }
+
+    /* Ticker — always visible, no overflow */
+    .ticker-wrap { overflow: hidden !important; }
+
+    /* Filter pills — wrap nicely */
+    .flex.gap-2.flex-wrap { gap:.5rem !important; }
+    @media(max-width:480px){
+      .filter-btn { font-size:.72rem !important; padding:.3rem .7rem !important; }
+    }
+
+    /* Horizontal event cards — stack on mobile */
+    @media(max-width:640px){
+      .event-card-h {
+        flex-direction: column !important;
+        min-height: unset !important;
+      }
+      .event-card-h .ec-img {
+        width: 100% !important;
+        min-width: unset !important;
+        min-height: 200px !important;
+      }
+      .event-card-h .ec-body {
+        padding: 1.1rem !important;
+      }
+    }
+
+    /* Contact form — lg:grid-cols-5 becomes 1-col on tablet */
+    @media(max-width:1023px){
+      .grid.lg\:grid-cols-5 {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    @media(max-width:639px){
+      .grid.sm\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      .grid.lg\:grid-cols-4 {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    /* Services tabs — scroll horizontally on mobile */
+    @media(max-width:640px){
+      .tabs-wrap, [class*="tabs"], .flex.gap-1.overflow-x-auto,
+      .flex.border-b {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        flex-wrap: nowrap !important;
+        padding-bottom: 1px;
+      }
+      .tab-btn {
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+        font-size: .8rem !important;
+      }
+    }
+
+    /* Services tab content — stack image+text on mobile */
+    @media(max-width:767px){
+      .grid.lg\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+      .gap-16 { gap: 2.5rem !important; }
+      .gap-12 { gap: 2rem !important; }
+    }
+
+    /* Pricing cards — single col on mobile */
+    @media(max-width:767px){
+      .grid.md\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+      }
+      .pricing-card.featured { transform: none !important; }
+    }
+
+    /* Calendar — shrink cells on mobile */
+    @media(max-width:600px){
+      .calendar-day {
+        min-height: 44px !important;
+        padding: .25rem !important;
+      }
+      .calendar-day .text-sm { font-size: .65rem !important; }
+      .day-event-dot { display: none !important; }
+      .calendar-grid { gap: 2px !important; }
+    }
+
+    /* Gallery masonry — 2 col → 1 col on small mobile */
+    @media(max-width:400px){
+      #masonry-grid { column-count: 1 !important; }
+    }
+
+    /* Featured gallery strip — already has media query, ensure side-stack */
+    @media(max-width:768px){
+      .featured-strip { grid-template-columns: 1fr !important; }
+      .side-stack { flex-direction: row !important; gap: 8px !important; }
+      .featured-strip .side-img img { min-height: 130px !important; }
+    }
+    @media(max-width:480px){
+      .side-stack { flex-direction: column !important; }
+    }
+
+    /* Supplier circle cards — 2 col on mobile */
+    @media(max-width:640px){
+      .doc-circles-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 1.25rem !important;
+      }
+      .doc-circle { width: 130px !important; height: 130px !important; }
+      .doc-circle .text-5xl { font-size: 2rem !important; }
+    }
+    @media(max-width:350px){
+      .doc-circles-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* Timeline — already alternating; force left-aligned on mobile */
+    @media(max-width:767px){
+      .tl-item { flex-direction: column !important; text-align: left !important; }
+      .tl-item:nth-child(even) { flex-direction: column !important; }
+      .tl-item:nth-child(even) .tl-content { text-align: left !important; }
+      .tl-line { left: 1.5rem !important; }
+    }
+
+    /* Team cards grid */
+    @media(max-width:639px){
+      .grid.sm\:grid-cols-2.lg\:grid-cols-4 {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+    @media(max-width:380px){
+      .grid.sm\:grid-cols-2.lg\:grid-cols-4 {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Partners logo grid */
+    @media(max-width:480px){
+      .grid.grid-cols-3.md\:grid-cols-5,
+      .grid.grid-cols-3.md\:grid-cols-6 {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    /* Map section — stack on mobile */
+    @media(max-width:767px){
+      .grid.lg\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+      }
+      .map-embed iframe { height: 260px !important; }
+    }
+
+    /* Form — full width inputs always */
+    .form-input, .form-select, .form-textarea { width: 100% !important; box-sizing: border-box; }
+
+    /* Countdown timer — wrap on very small */
+    @media(max-width:400px){
+      .countdown-grid, .flex.gap-4.justify-center {
+        gap: .5rem !important;
+      }
+      .countdown-block, [class*="countdown"] div {
+        min-width: 52px !important;
+        padding: .5rem !important;
+      }
+    }
+
+    /* Lightbox — full screen on all mobile */
+    @media(max-width:640px){
+      #lightbox-content img { max-height: 65vw !important; }
+    }
+
+    /* Glow blobs — hide on mobile to prevent overflow */
+    @media(max-width:640px){
+      .glow-blob { display: none !important; }
+    }
+
+    /* Page section vertical padding clamp */
+    .py-28 { padding-top: clamp(3rem, 7vw, 7rem); padding-bottom: clamp(3rem, 7vw, 7rem); }
+    .py-20 { padding-top: clamp(2.5rem, 5vw, 5rem); padding-bottom: clamp(2.5rem, 5vw, 5rem); }
+
+    /* Prevent any horizontal scroll bleed */
+    body { overflow-x: hidden !important; }
+    img, video, iframe { max-width: 100%; }
+
+
+    /* Nav container fluid padding */
+    @media(max-width:640px){
+      #navbar > div { padding-left:1rem !important; padding-right:1rem !important; }
+    }
+    /* Images never overflow */
+    img { max-width:100%; height:auto; }
+    /* Buttons on small screens */
+    @media(max-width:360px){
+      .btn-primary, .btn-outline { font-size:.8rem !important; padding:.5rem .9rem !important; }
+    }
+    /* Section label — wrap on tiny screens */
+    .section-label { flex-wrap:wrap; }
+
+    /* ── END RESPONSIVE ── */
+
   </style>
 </head>
 <body>
@@ -442,6 +707,7 @@
       <img src="/SRC/mgihub.jpeg" alt="MG Innovation Hub" style="height:48px;width:auto;object-fit:contain;display:block;"/>
     </a>
 
+
     <!-- Desktop Links -->
     <div class="hidden md:flex items-center gap-8">
       <a href="/" class="nav-link">Home</a>
@@ -452,6 +718,7 @@
       <a href="/Pages/Gallery.html" class="nav-link">Gallery</a>
       <a href="/Pages/Contact.html" class="nav-link">Contact</a>
     </div>
+
 
     <!-- CTA + Toggle + Hamburger -->
     <div class="flex items-center gap-3">
@@ -469,6 +736,7 @@
       </button>
     </div>
   </div>
+
 
   <!-- Mobile Menu -->
   <div id="mobile-menu">
@@ -488,6 +756,7 @@
 ════════════════════════════════════════ -->
 <section id="hero" class="relative h-screen min-h-[600px] overflow-hidden">
 
+
   <!-- Slide 1 -->
   <div class="hero-slide active" id="slide-0">
     <div class="slide-bg" style="background-image:url('/SRC/Team/MgTeam7.jpg')"></div>
@@ -505,6 +774,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- Slide 2 -->
   <div class="hero-slide" id="slide-1">
@@ -524,6 +794,7 @@
     </div>
   </div>
 
+
   <!-- Slide 3 -->
   <div class="hero-slide" id="slide-2">
     <div class="slide-bg" style="background-image:url('/SRC/Workshop/Entre12.jpg')"></div>
@@ -542,9 +813,11 @@
     </div>
   </div>
 
+
   <!-- Gradient bottom fade -->
   <div class="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
        style="background:linear-gradient(to bottom, transparent, var(--mg-ink))"></div>
+
 
   <!-- Controls -->
   <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
@@ -552,6 +825,7 @@
     <button class="carousel-dot" data-slide="1"></button>
     <button class="carousel-dot" data-slide="2"></button>
   </div>
+
 
   <!-- Arrow Buttons -->
   <button id="hero-prev"
@@ -563,11 +837,13 @@
     →
   </button>
 
+
   <!-- Progress bar -->
   <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10 overflow-hidden z-20">
     <div class="carousel-progress" id="carousel-progress"></div>
   </div>
 </section>
+
 
 <!-- ══════════════════════════════════════
      TICKER
@@ -575,23 +851,19 @@
 <div class="ticker-wrap relative z-10">
   <div class="ticker-inner" id="ticker">
     <span>Deep Tech &nbsp;<b>✦</b></span>
-    <span>AI &amp; Machine Learning &nbsp;<b>✦</b></span>
     <span>FinTech Innovation &nbsp;<b>✦</b></span>
     <span>CleanTech &nbsp;<b>✦</b></span>
     <span>AgriTech &nbsp;<b>✦</b></span>
-    <span>HealthTech &nbsp;<b>✦</b></span>
+    <span>Entrepreneurship&nbsp;<b>✦</b></span>
     <span>EdTech &nbsp;<b>✦</b></span>
-    <span>Blockchain &nbsp;<b>✦</b></span>
     <span>Smart Cities &nbsp;<b>✦</b></span>
     <span>Robotics &nbsp;<b>✦</b></span>
     <span>Deep Tech &nbsp;<b>✦</b></span>
-    <span>AI &amp; Machine Learning &nbsp;<b>✦</b></span>
     <span>FinTech Innovation &nbsp;<b>✦</b></span>
     <span>CleanTech &nbsp;<b>✦</b></span>
     <span>AgriTech &nbsp;<b>✦</b></span>
-    <span>HealthTech &nbsp;<b>✦</b></span>
+    <span>Entrepreneurship&nbsp;<b>✦</b></span>
     <span>EdTech &nbsp;<b>✦</b></span>
-    <span>Blockchain &nbsp;<b>✦</b></span>
     <span>Smart Cities &nbsp;<b>✦</b></span>
     <span>Robotics &nbsp;<b>✦</b></span>
   </div>
@@ -633,11 +905,11 @@
           <div class="text-white/50 text-sm mt-1">Mentors &amp; Experts</div>
         </div>
         <div class="stat-card reveal reveal-delay-3">
-          <div class="stat-value">0.5M</div>
+          <div class="stat-value" style="font-size:2.4rem">$0.5M<span style="font-size:1.4rem">+</span></div>
           <div class="text-white/50 text-sm mt-1">Funding Raised</div>
         </div>
         <div class="stat-card reveal reveal-delay-4">
-          <div class="stat-value counter" data-target="4">0</div>
+          <div class="stat-value counter" data-target="7">0</div>
           <div class="text-white/50 text-sm mt-1">Counties Reached</div>
         </div>
       </div>
@@ -654,6 +926,7 @@
 ════════════════════════════════════════ -->
 <section id="services" class="relative py-28 z-10" style="background:var(--mg-surface)">
   <div class="max-w-7xl mx-auto px-6">
+
 
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
@@ -673,8 +946,10 @@
       </div>
     </div>
 
+
     <!-- Cards Grid -->
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="services-grid">
+
 
       <div class="service-card reveal">
         <span class="service-num">01</span>
@@ -684,6 +959,7 @@
         <div class="mt-4 text-[var(--mg-electric)] text-sm font-semibold flex items-center gap-1">Learn more →</div>
       </div>
 
+
       <div class="service-card reveal reveal-delay-1">
         <span class="service-num">02</span>
         <div class="service-icon" style="background:rgba(182,255,78,.1)">🧠</div>
@@ -691,6 +967,7 @@
         <p class="text-white/50 text-sm leading-relaxed">Practical bootcamps covering Basic Digital Skills, full-stack development, and emerging technologies led by industry practitioners.</p>
         <div class="mt-4 text-[var(--mg-neon)] text-sm font-semibold flex items-center gap-1">Learn more →</div>
       </div>
+
 
       <div class="service-card reveal reveal-delay-2">
         <span class="service-num">03</span>
@@ -700,6 +977,7 @@
         <div class="mt-4 text-[var(--mg-orange)] text-sm font-semibold flex items-center gap-1">Learn more →</div>
       </div>
 
+
       <div class="service-card reveal reveal-delay-1">
         <span class="service-num">04</span>
         <div class="service-icon" style="background:rgba(0,229,255,.1)">🌐</div>
@@ -707,6 +985,7 @@
         <p class="text-white/50 text-sm leading-relaxed">We partner with enterprises to design innovation labs, run internal hackathons, and identify emerging startups for collaboration or acquisition.</p>
         <div class="mt-4 text-[var(--mg-electric)] text-sm font-semibold flex items-center gap-1">Learn more →</div>
       </div>
+
 
       <div class="service-card reveal reveal-delay-2">
         <span class="service-num">05</span>
@@ -716,6 +995,7 @@
         <div class="mt-4 text-[var(--mg-neon)] text-sm font-semibold flex items-center gap-1">Learn more →</div>
       </div>
 
+
       <div class="service-card reveal reveal-delay-3" id="hidden-service" style="display:none">
         <span class="service-num">06</span>
         <div class="service-icon" style="background:rgba(255,107,43,.1)">🌱</div>
@@ -723,6 +1003,7 @@
         <p class="text-white/50 text-sm leading-relaxed">Monthly summits, weekly demo days, cross-border tours, and a thriving online community of 1,200+ innovators across 7 countries.</p>
         <div class="mt-4 text-[var(--mg-orange)] text-sm font-semibold flex items-center gap-1">Learn more →</div>
       </div>
+
 
       <!-- Placeholder last card -->
       <div class="service-card reveal reveal-delay-3 flex items-center justify-center border-dashed"
@@ -736,6 +1017,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- ══════════════════════════════════════
      CALL TO ACTION
@@ -805,14 +1087,14 @@
             <div class="stars">★★★★★</div>
             <div class="quote-mark">"</div>
             <p class="text-white/70 text-sm leading-relaxed mt-2">
-              The Inclusive Entrepreneurship Program was a game changer for my baking business, Keki Krumb. 
+               The Inclusive Entrepreneurship Program was a game changer for my baking business, Keki Krumb.
 My sales are always in order now.
 I know my target audience, how to reach them and how to deliver to them.
 Also, I have come to know the importance of branding.
 Forever super grateful to MG for such a wonderful program
             </p>
             <div class="flex items-center gap-3 mt-5 pt-4 border-t border-white/10">
-              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--mg-electric)] to-blue-800 flex items-center justify-center syne font-bold text-[var(--mg-ink)]">RM</div>
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--mg-neon)] to-green-900 flex items-center justify-center syne font-bold text-[var(--mg-ink)]">RM</div>
               <div>
                 <div class="font-semibold text-sm">Rehema Mwangi</div>
                 <div class="text-white/40 text-xs">CEO, Keki Krumbs</div>
@@ -826,47 +1108,12 @@ Forever super grateful to MG for such a wonderful program
             <div class="stars">★★★★★</div>
             <div class="quote-mark">"</div>
             <p class="text-white/70 text-sm leading-relaxed mt-2">
-           I’m so grateful for the Holiday Digital Skills Bootcamp! I’ve seen my child learn new skills, become more confident, and enjoy learning something meaningful during the holidays. Thank you for investing in our children’s future.I truly appreciate this initiative and would gladly recommend it to other parents!
-            </p>
-            <div class="flex items-center gap-3 mt-5 pt-4 border-t border-white/10">
-              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--mg-neon)] to-green-900 flex items-center justify-center syne font-bold text-[var(--mg-ink)]">DO</div>
-              <div>
-                <div class="font-semibold text-sm">David Osei</div>
-                <div class="text-white/40 text-xs">Parent</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-card-wrap">
-          <div class="testimonial-card h-full">
-            <div class="stars">★★★★★</div>
-            <div class="quote-mark">"</div>
-            <p class="text-white/70 text-sm leading-relaxed mt-2">
-              Raised our seed round during MG's Investor Pitch Night. The preparation sessions, the warm intros, and the sheer caliber of people in the room — it's unlike anything else in the ecosystem.
-            </p>
-            <div class="flex items-center gap-3 mt-5 pt-4 border-t border-white/10">
-              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--mg-orange)] to-red-900 flex items-center justify-center syne font-bold text-white">FM</div>
-              <div>
-                <div class="font-semibold text-sm">Fatuma Mwangi</div>
-                <div class="text-white/40 text-xs">Founder, AgroVault</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-card-wrap">
-          <div class="testimonial-card h-full">
-            <div class="stars">★★★★★</div>
-            <div class="quote-mark">"</div>
-            <p class="text-white/70 text-sm leading-relaxed mt-2">
-              We ran our company's internal hackathon at MG Hub and it transformed our culture. The facilitation team is exceptional. We spun out two internal product lines from that single weekend.
-            </p>
+              I’m so grateful for the Holiday Digital Skills Bootcamp! I’ve seen my child learn new skills, become more confident, and enjoy learning something meaningful during the holidays. Thank you for investing in our children’s future.I truly appreciate this initiative and would gladly recommend it to other parents!
             <div class="flex items-center gap-3 mt-5 pt-4 border-t border-white/10">
               <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-900 flex items-center justify-center syne font-bold text-white">JN</div>
               <div>
                 <div class="font-semibold text-sm">James Ndung'u</div>
-                <div class="text-white/40 text-xs">Head of Innovation, Equity Bank</div>
+                <div class="text-white/40 text-xs">Parent</div>
               </div>
             </div>
           </div>
@@ -888,7 +1135,6 @@ Forever super grateful to MG for such a wonderful program
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -904,6 +1150,7 @@ Forever super grateful to MG for such a wonderful program
 <footer class="relative z-10">
   <div class="max-w-7xl mx-auto px-6 py-16">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
 
       <!-- Brand -->
       <div class="lg:col-span-1">
@@ -923,6 +1170,7 @@ Forever super grateful to MG for such a wonderful program
         </div>
       </div>
 
+
       <!-- Links -->
       <div>
         <h4 class="syne font-bold text-sm mb-4 tracking-wide">Company</h4>
@@ -935,6 +1183,7 @@ Forever super grateful to MG for such a wonderful program
         </ul>
       </div>
 
+
       <div>
         <h4 class="syne font-bold text-sm mb-4 tracking-wide">Services</h4>
         <ul class="space-y-2.5">
@@ -946,6 +1195,7 @@ Forever super grateful to MG for such a wonderful program
         <li><a href="#services" class="footer-link">Growth & Scaling</a></li>
         </ul>
       </div>
+
 
       <!-- Contact -->
       <div>
@@ -970,6 +1220,7 @@ Forever super grateful to MG for such a wonderful program
       </div>
     </div>
   </div>
+
 
   <!-- Bottom bar -->
   <div class="border-t border-white/5">
@@ -1161,5 +1412,19 @@ document.getElementById('cta-email').addEventListener('keydown', e => {
   if (e.key === 'Enter') handleCTA();
 });
 </script>
+
+  <!-- Nav height → CSS variable (fixes hero offset on all screen sizes) -->
+  <script>
+    (function(){
+      function setNavH(){
+        var h = document.getElementById('navbar');
+        if(h) document.documentElement.style.setProperty('--nav-h', h.offsetHeight+'px');
+      }
+      setNavH();
+      window.addEventListener('resize', setNavH);
+      document.addEventListener('DOMContentLoaded', setNavH);
+      window.addEventListener('load', setNavH);
+    })();
+  </script>
 </body>
 </html>
